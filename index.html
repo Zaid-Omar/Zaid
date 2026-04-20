@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaid Omar – Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cyan:#00d4ff;
+  --bg:#050508;
+  --bg2:#0c0c10;
+  --card:#111117;
+  --card-border:rgba(255,255,255,0.08);
+  --text:#ffffff;
+  --text-muted:rgba(255,255,255,0.5);
+  --text-dim:rgba(255,255,255,0.25);
+  --red:#ff4444;
+  --font:'Space Grotesk',sans-serif;
+  --mono:'JetBrains Mono',monospace;
+}
+html[lang="ar"]{--font:'Cairo',sans-serif}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;z-index:100;background:rgba(5,5,8,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.05);padding:0 3rem;display:flex;align-items:center;justify-content:space-between;height:60px;gap:1rem}
+.nav-logo{font-weight:800;font-size:1rem;letter-spacing:-0.02em;white-space:nowrap}
+.nav-logo span{color:var(--cyan)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:#fff}
+html[lang="ar"] .nav-links a{letter-spacing:0}
+.lang-switcher{display:flex;gap:6px}
+.lang-btn{background:none;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.4);font-size:0.65rem;font-family:var(--mono);letter-spacing:0.08em;padding:4px 9px;cursor:pointer;transition:all 0.2s;text-transform:uppercase}
+.lang-btn:hover{border-color:rgba(255,255,255,0.4);color:#fff}
+.lang-btn.active{border-color:var(--cyan);color:var(--cyan)}
+
+/* HERO */
+.hero{padding:9rem 3rem 4rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;max-width:1200px;margin:0 auto}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(0,212,255,0.4);color:var(--cyan);padding:6px 14px;font-size:0.7rem;font-family:var(--mono);letter-spacing:0.1em;margin-bottom:2rem}
+.badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.hero-name{font-size:clamp(3.5rem,6vw,5.5rem);font-weight:800;line-height:1.0;letter-spacing:-0.03em;margin-bottom:1rem}
+html[lang="ar"] .hero-name{letter-spacing:0}
+.hero-name .accent{color:var(--cyan)}
+.hero-sub{font-family:var(--mono);font-size:0.88rem;color:var(--text-muted);margin-bottom:1.5rem;letter-spacing:0.03em}
+html[lang="ar"] .hero-sub{font-family:var(--font);letter-spacing:0}
+.hero-desc{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);padding:1.5rem;font-size:0.9rem;color:rgba(255,255,255,0.65);line-height:1.7;margin-bottom:2rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2rem}
+.skill-tag{border:1px solid var(--cyan);padding:5px 12px;font-size:0.65rem;font-family:var(--mono);letter-spacing:0.1em;color:var(--cyan);text-transform:uppercase}
+.hero-btns{display:flex;gap:12px}
+.btn{display:inline-block;border:1px solid rgba(255,255,255,0.3);padding:12px 22px;font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#fff;cursor:pointer;background:none;transition:background 0.2s,border-color 0.2s}
+html[lang="ar"] .btn{letter-spacing:0}
+.btn:hover{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.5)}
+
+/* CODE CARD */
+.code-card{background:#1a1a1a;border:1px solid rgba(255,255,255,0.1);border-radius:6px;overflow:hidden;font-family:var(--mono)}
+.code-card-header{background:#252525;padding:10px 16px;display:flex;align-items:center;gap:8px}
+.dots{display:flex;gap:6px}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot.r{background:#ff5f57}.dot.y{background:#febc2e}.dot.g{background:#28c840}
+.code-filename{margin-left:auto;font-size:0.72rem;color:rgba(255,255,255,0.3)}
+.code-body{padding:1.5rem;font-size:0.78rem;line-height:1.9;color:#aaa;direction:ltr;text-align:left}
+.ck{color:#e2e2e2}.cs{color:var(--cyan)}.cc{color:rgba(255,255,255,0.3)}
+.code-run{padding:10px 16px;border-top:1px solid rgba(255,255,255,0.07);font-size:0.75rem;color:var(--cyan);display:flex;align-items:center;gap:8px;direction:ltr;text-align:left}
+.code-run::before{content:'▶';font-size:0.6rem}
+
+/* SECTION LABEL */
+.sec-label{display:flex;align-items:center;gap:12px;margin-bottom:1rem}
+.sec-num{font-family:var(--mono);font-size:0.72rem;color:var(--cyan);letter-spacing:0.1em}
+html[lang="ar"] .sec-num{font-family:var(--font);letter-spacing:0}
+.sec-line{width:40px;height:1px;background:var(--cyan)}
+.sec-title{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;margin-bottom:3rem}
+html[lang="ar"] .sec-title{letter-spacing:0}
+.sec-title .dot-c{color:var(--cyan)}
+
+/* WERDEGANG */
+.werdegang-wrap{padding:6rem 3rem;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.werdegang-inner{max-width:1200px;margin:0 auto}
+.timeline{position:relative;padding:2rem 0}
+.timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.1);transform:translateX(-50%)}
+.tl-item{display:grid;grid-template-columns:1fr 80px 1fr;align-items:start;margin-bottom:3.5rem}
+.tl-l{text-align:right;padding-right:2rem;padding-top:0.3rem}
+html[dir="rtl"] .tl-l{text-align:left;padding-right:0;padding-left:2rem}
+.tl-r{padding-left:2rem;padding-top:0.3rem}
+html[dir="rtl"] .tl-r{padding-left:0;padding-right:2rem}
+.tl-m{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:0.3rem}
+.tl-dot{width:12px;height:12px;border-radius:50%;border:1px solid var(--cyan);background:transparent;flex-shrink:0}
+.tl-dot.filled{background:var(--cyan)}
+.tl-dot.red-d{border-color:var(--red);background:var(--red)}
+.tl-date{font-family:var(--mono);font-size:0.68rem;color:var(--cyan);letter-spacing:0.05em;text-align:center;line-height:1.4}
+.tl-date.red{color:var(--red)}
+.tl-card{background:var(--card);border:1px solid rgba(255,255,255,0.08);padding:1.25rem 1.5rem}
+.tl-card h3{font-weight:700;font-size:1rem;margin-bottom:4px}
+.tl-role{font-family:var(--mono);font-size:0.7rem;color:var(--cyan);margin-bottom:8px}
+html[lang="ar"] .tl-role{font-family:var(--font)}
+.tl-role.red{color:var(--red)}
+.tl-desc{font-size:0.82rem;color:rgba(255,255,255,0.5);line-height:1.7}
+
+/* PROJECTS */
+.proj-wrap{padding:6rem 3rem}
+.proj-inner{max-width:1200px;margin:0 auto}
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.proj-card{background:var(--card);border:1px solid rgba(255,255,255,0.08)}
+.proj-img{height:200px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.proj-img-1{background:linear-gradient(135deg,#0d1520 0%,#0a1830 50%,#1a0d2e 100%)}
+.proj-img-2{background:linear-gradient(135deg,#0a1a2e 0%,#0d1f1a 50%,#0a1a2e 100%)}
+.proj-img-3{background:linear-gradient(135deg,#1a0d2e 0%,#0d1520 50%,#1a1a0a 100%)}
+.proj-img-4{background:linear-gradient(135deg,#0a1520 0%,#0a2014 50%,#1a0d1a 100%)}
+.proj-ico{opacity:0.25}
+.proj-badge-tag{position:absolute;top:12px;right:12px;background:rgba(0,0,0,0.7);border:1px solid rgba(255,255,255,0.15);padding:4px 10px;font-size:0.6rem;font-family:var(--mono);letter-spacing:0.1em;color:rgba(255,255,255,0.5);text-transform:uppercase}
+html[dir="rtl"] .proj-badge-tag{right:auto;left:12px;letter-spacing:0}
+.proj-body{padding:1.5rem}
+.proj-cat{font-family:var(--mono);font-size:0.7rem;color:var(--cyan);display:flex;align-items:center;gap:6px;margin-bottom:8px}
+html[lang="ar"] .proj-cat{font-family:var(--font)}
+.proj-cat::before{content:'▶';font-size:0.55rem}
+html[dir="rtl"] .proj-cat::before{content:'◀'}
+.proj-title{font-weight:700;font-size:1.05rem;margin-bottom:10px}
+.proj-desc{font-size:0.83rem;color:rgba(255,255,255,0.5);line-height:1.6;margin-bottom:12px}
+.proj-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.proj-tech{border:1px solid rgba(255,255,255,0.15);padding:3px 10px;font-size:0.62rem;font-family:var(--mono);color:rgba(255,255,255,0.5)}
+.proj-link{font-size:0.78rem;color:var(--cyan);text-decoration:none;font-weight:500}
+.proj-link:hover{text-decoration:underline}
+
+/* CONTACT */
+.contact-wrap{padding:6rem 3rem;text-align:center;background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+.contact-inner{max-width:800px;margin:0 auto}
+.contact-title{font-size:clamp(3rem,8vw,6rem);font-weight:800;letter-spacing:-0.03em;line-height:1.05;margin-bottom:1.5rem}
+html[lang="ar"] .contact-title{letter-spacing:0}
+.contact-title .accent{color:var(--cyan)}
+.contact-sub{font-size:0.88rem;color:rgba(255,255,255,0.5);max-width:400px;margin:0 auto 2.5rem}
+.contact-btns{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.cbtn{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,0.2);padding:14px 26px;font-size:0.7rem;font-family:var(--mono);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none;color:#fff;transition:border-color 0.2s,background 0.2s}
+.cbtn:hover{background:rgba(255,255,255,0.05);border-color:rgba(255,255,255,0.4)}
+.cbtn svg{width:15px;height:15px;flex-shrink:0}
+
+/* FOOTER */
+footer{border-top:1px solid rgba(255,255,255,0.07);padding:1.5rem 3rem;display:flex;align-items:center;justify-content:space-between;font-size:0.75rem;color:rgba(255,255,255,0.25)}
+.flogo{font-weight:800;font-size:0.9rem;color:#fff}
+.flogo span{color:var(--cyan)}
+.flinks{display:flex;gap:2rem}
+.flinks a{color:rgba(255,255,255,0.25);text-decoration:none;font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase}
+.flinks a:hover{color:#fff}
+
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:rgba(0,212,255,0.3)}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;transition:all 0.3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;width:100%;background:rgba(5,5,8,0.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,0.07);z-index:99;padding:1.5rem 2rem;flex-direction:column;gap:0}
+.mobile-menu.open{display:flex}
+.mobile-menu a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:0.9rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:1rem 0;border-bottom:1px solid rgba(255,255,255,0.06);transition:color 0.2s}
+.mobile-menu a:last-child{border-bottom:none}
+.mobile-menu a:hover{color:#fff}
+.mobile-lang{display:flex;gap:8px;padding-top:1rem}
+
+@media(max-width:768px){
+nav{padding:0 1.5rem;height:56px}
+.nav-links{display:none}
+.lang-switcher{display:none}
+.hamburger{display:flex}
+.hero{grid-template-columns:1fr;gap:2rem;padding:6rem 1.5rem 3rem}
+.hero-name{font-size:clamp(3rem,15vw,4.5rem)}
+.werdegang-wrap{padding:4rem 1.5rem}
+.timeline::before{left:20px;transform:none}
+.tl-item{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:2rem}
+.tl-l,.tl-r{text-align:left;padding:0}
+html[dir=rtl] .tl-l,html[dir=rtl] .tl-r{text-align:right}
+.tl-m{flex-direction:row;gap:10px;padding:0;justify-content:flex-start}
+html[dir=rtl] .tl-m{justify-content:flex-end}
+.proj-wrap{padding:4rem 1.5rem}
+.proj-grid{grid-template-columns:1fr}
+.contact-wrap{padding:4rem 1.5rem}
+.contact-title{font-size:clamp(2.5rem,12vw,4rem)}
+.contact-btns{flex-direction:column;align-items:center}
+.cbtn{width:100%;max-width:280px;justify-content:center}
+footer{padding:1.5rem;flex-wrap:wrap;gap:0.75rem;justify-content:center;text-align:center}
+.flinks{gap:1.5rem}
+.sec-title{font-size:clamp(2rem,8vw,3rem)}
+}
+@media(max-width:480px){
+nav{padding:0 1rem}
+.hero{padding:5.5rem 1rem 2.5rem}
+.werdegang-wrap,.proj-wrap,.contact-wrap{padding:3rem 1rem}
+footer{padding:1.5rem 1rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Zaid Omar<span>.</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero" data-i18n="nav_profil"></a></li>
+    <li><a href="#werdegang" data-i18n="nav_werdegang"></a></li>
+    <li><a href="#projekte" data-i18n="nav_projekte"></a></li>
+    <li><a href="#kontakt" data-i18n="nav_kontakt"></a></li>
+  </ul>
+  <div class="lang-switcher">
+    <button class="lang-btn" onclick="setLang('de')">DE</button>
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('ar')">AR</button>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#hero" data-i18n="nav_profil" onclick="closeMenu()"></a>
+  <a href="#werdegang" data-i18n="nav_werdegang" onclick="closeMenu()"></a>
+  <a href="#projekte" data-i18n="nav_projekte" onclick="closeMenu()"></a>
+  <a href="#kontakt" data-i18n="nav_kontakt" onclick="closeMenu()"></a>
+  <div class="mobile-lang">
+    <button class="lang-btn" onclick="setLang('de');closeMenu()">DE</button>
+    <button class="lang-btn active" id="mobileLangEn" onclick="setLang('en');closeMenu()">EN</button>
+    <button class="lang-btn" onclick="setLang('ar');closeMenu()">AR</button>
+  </div>
+</div>
+
+<section id="hero">
+  <div class="hero">
+    <div>
+      <div class="badge" data-i18n="badge"></div>
+      <h1 class="hero-name">Zaid<br><span class="accent">Omar</span></h1>
+      <p class="hero-sub" data-i18n="hero_sub"></p>
+      <div class="hero-desc" data-i18n="hero_desc"></div>
+      <div class="skill-tags">
+        <span class="skill-tag">Java / Spring Boot</span>
+        <span class="skill-tag">JPA / PostgreSQL</span>
+        <span class="skill-tag">MongoDB</span>
+        <span class="skill-tag">Docker</span>
+        <span class="skill-tag">Angular</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">ESP32 / IoT</span>
+        <span class="skill-tag">Kotlin</span>
+      </div>
+      <div class="hero-btns">
+        <a href="#werdegang" class="btn" data-i18n="nav_werdegang"></a>
+        <a href="#projekte" class="btn" data-i18n="nav_projekte"></a>
+        <a href="#kontakt" class="btn" data-i18n="nav_kontakt"></a>
+      </div>
+    </div>
+    <div>
+      <div class="code-card">
+        <div class="code-card-header">
+          <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+          <span class="code-filename">profile.json</span>
+        </div>
+        <div class="code-body">
+          <div>{</div>
+          <div>&nbsp;&nbsp;<span class="cc">// Zaid Omar – Developer Profile</span></div><br>
+          <div>&nbsp;&nbsp;<span class="ck">"name"</span>: <span class="cs">"Zaid Omar"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="ck">"degree"</span>: <span class="cs">"B.Sc. Angewandte Informatik"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="ck">"location"</span>: <span class="cs">"Düsseldorf, NRW"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="ck">"graduated"</span>: <span class="cs">"August 2025"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="ck">"stack"</span>: [</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"Java"</span>, <span class="cs">"Spring Boot"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"JPA"</span>, <span class="cs">"PostgreSQL"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"MongoDB"</span>, <span class="cs">"Docker"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"Angular"</span>, <span class="cs">"Python"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"ESP32"</span>, <span class="cs">"InfluxDB"</span>, <span class="cs">"Grafana"</span>,</div>
+          <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cs">"Kotlin"</span>, <span class="cs">"Android / VR"</span></div>
+          <div>&nbsp;&nbsp;],</div>
+          <div>&nbsp;&nbsp;<span class="ck">"thesis"</span>: <span class="cs">"Transaktionsmanagement JPA + MongoDB"</span>,</div>
+          <div>&nbsp;&nbsp;<span class="ck">"status"</span>: <span class="cs">"open_to_work"</span></div>
+          <div>}</div>
+        </div>
+        <div class="code-run">ready_for_new_challenges</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="werdegang-wrap" id="werdegang">
+  <div class="werdegang-inner">
+    <div class="sec-label">
+      <span class="sec-num" data-i18n="sec_werdegang_num"></span>
+      <div class="sec-line"></div>
+    </div>
+    <h2 class="sec-title" data-i18n="sec_werdegang_title"></h2>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-l">
+          <div class="tl-card">
+            <h3 data-i18n="tl1_title"></h3>
+            <div class="tl-role" data-i18n="tl1_role"></div>
+            <div class="tl-desc" data-i18n="tl1_desc"></div>
+          </div>
+        </div>
+        <div class="tl-m"><div class="tl-dot"></div><div class="tl-date" data-i18n="tl1_date"></div></div>
+        <div class="tl-r"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-l"></div>
+        <div class="tl-m"><div class="tl-dot"></div><div class="tl-date">2019 – 2022</div></div>
+        <div class="tl-r">
+          <div class="tl-card">
+            <h3 data-i18n="tl2_title"></h3>
+            <div class="tl-role" data-i18n="tl2_role"></div>
+            <div class="tl-desc" data-i18n="tl2_desc"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-l">
+          <div class="tl-card">
+            <h3 data-i18n="tl3_title"></h3>
+            <div class="tl-role" data-i18n="tl3_role"></div>
+            <div class="tl-desc" data-i18n="tl3_desc"></div>
+          </div>
+        </div>
+        <div class="tl-m"><div class="tl-dot"></div><div class="tl-date">2022</div></div>
+        <div class="tl-r"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-l"></div>
+        <div class="tl-m"><div class="tl-dot filled"></div><div class="tl-date">09.2022 – 08.2025</div></div>
+        <div class="tl-r">
+          <div class="tl-card">
+            <h3 data-i18n="tl4_title"></h3>
+            <div class="tl-role" data-i18n="tl4_role"></div>
+            <div class="tl-desc" data-i18n="tl4_desc"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-l">
+          <div class="tl-card">
+            <h3 data-i18n="tl5_title"></h3>
+            <div class="tl-role" data-i18n="tl5_role"></div>
+            <div class="tl-desc" data-i18n="tl5_desc"></div>
+          </div>
+        </div>
+        <div class="tl-m"><div class="tl-dot filled"></div><div class="tl-date">2025</div></div>
+        <div class="tl-r"></div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-l"></div>
+        <div class="tl-m"><div class="tl-dot red-d"></div><div class="tl-date red" data-i18n="tl6_date"></div></div>
+        <div class="tl-r">
+          <div class="tl-card">
+            <h3 data-i18n="tl6_title"></h3>
+            <div class="tl-role red" data-i18n="tl6_role"></div>
+            <div class="tl-desc" data-i18n="tl6_desc"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="proj-wrap" id="projekte">
+  <div class="proj-inner">
+    <div class="sec-label">
+      <span class="sec-num" data-i18n="sec_proj_num"></span>
+      <div class="sec-line"></div>
+    </div>
+    <h2 class="sec-title" data-i18n="sec_proj_title"></h2>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-img proj-img-1">
+          <svg class="proj-ico" width="50" height="50" viewBox="0 0 50 50" fill="none"><path d="M10 17L25 10L40 17V33L25 40L10 33V17Z" stroke="white" stroke-width="2"/><path d="M18 22L25 18L32 22V28L25 32L18 28V22Z" stroke="#00d4ff" stroke-width="1.5"/></svg>
+          <div class="proj-badge-tag" data-i18n="badge_thesis"></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat" data-i18n="p1_cat"></div>
+          <div class="proj-title">Hybrid Transaction App</div>
+          <div class="proj-desc" data-i18n="p1_desc"></div>
+          <div class="proj-tags"><span class="proj-tech">Spring Boot</span><span class="proj-tech">JPA</span><span class="proj-tech">MongoDB</span><span class="proj-tech">Docker</span><span class="proj-tech">PostgreSQL</span></div>
+          <a href="#" class="proj-link" data-i18n="github_link"></a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img proj-img-2">
+          <svg class="proj-ico" width="50" height="50" viewBox="0 0 50 50" fill="none"><rect x="8" y="8" width="34" height="34" rx="2" stroke="white" stroke-width="2"/><path d="M17 25H33M25 17V33" stroke="#00d4ff" stroke-width="1.5"/><circle cx="25" cy="25" r="5" stroke="#00d4ff" stroke-width="1"/></svg>
+          <div class="proj-badge-tag" data-i18n="badge_uni"></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat" data-i18n="p2_cat"></div>
+          <div class="proj-title">IoT Monitoring System</div>
+          <div class="proj-desc" data-i18n="p2_desc"></div>
+          <div class="proj-tags"><span class="proj-tech">ESP32</span><span class="proj-tech">InfluxDB</span><span class="proj-tech">Grafana</span><span class="proj-tech">Python</span></div>
+          <a href="#" class="proj-link" data-i18n="github_link"></a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img proj-img-3">
+          <svg class="proj-ico" width="50" height="50" viewBox="0 0 50 50" fill="none"><circle cx="25" cy="25" r="16" stroke="white" stroke-width="2"/><path d="M17 25L22 30L33 19" stroke="#00d4ff" stroke-width="1.5"/></svg>
+          <div class="proj-badge-tag" data-i18n="badge_uni"></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat" data-i18n="p3_cat"></div>
+          <div class="proj-title">3D Shape Recognition</div>
+          <div class="proj-desc" data-i18n="p3_desc"></div>
+          <div class="proj-tags"><span class="proj-tech">Python</span><span class="proj-tech">OpenCV</span><span class="proj-tech">NumPy</span></div>
+          <a href="#" class="proj-link" data-i18n="github_link"></a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img proj-img-4">
+          <svg class="proj-ico" width="50" height="50" viewBox="0 0 50 50" fill="none"><path d="M12 38L25 12L38 38" stroke="white" stroke-width="2"/><path d="M18 29H32" stroke="#00d4ff" stroke-width="1.5"/></svg>
+          <div class="proj-badge-tag" data-i18n="badge_uni"></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat" data-i18n="p4_cat"></div>
+          <div class="proj-title">Angular WebSocket App</div>
+          <div class="proj-desc" data-i18n="p4_desc"></div>
+          <div class="proj-tags"><span class="proj-tech">Angular</span><span class="proj-tech">Spring Boot</span><span class="proj-tech">WebSockets</span><span class="proj-tech">TypeScript</span></div>
+          <a href="#" class="proj-link" data-i18n="github_link"></a>
+        </div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-img" style="background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 40%,#0d0d1a 100%)">
+          <svg class="proj-ico" width="60" height="60" viewBox="0 0 60 60" fill="none">
+            <ellipse cx="30" cy="38" rx="18" ry="6" stroke="white" stroke-width="1.5"/>
+            <path d="M14 30 Q20 18 30 22 Q40 26 46 30" stroke="#00d4ff" stroke-width="1.5" fill="none"/>
+            <path d="M18 34 Q24 20 30 24 Q36 28 42 34" stroke="white" stroke-width="1" fill="none" opacity="0.4"/>
+            <circle cx="30" cy="20" r="3" stroke="#00d4ff" stroke-width="1.5"/>
+            <path d="M27 20 L15 26" stroke="#00d4ff" stroke-width="1" opacity="0.6"/>
+            <path d="M33 20 L45 26" stroke="#00d4ff" stroke-width="1" opacity="0.6"/>
+          </svg>
+          <div class="proj-badge-tag" style="color:var(--cyan);border-color:rgba(0,212,255,0.4)">3D / VR</div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-cat" data-i18n="p5_cat"></div>
+          <div class="proj-title">Nike 3D &amp; VR App</div>
+          <div class="proj-desc" data-i18n="p5_desc"></div>
+          <div class="proj-tags"><span class="proj-tech">Kotlin</span><span class="proj-tech">Android</span><span class="proj-tech">ARCore</span><span class="proj-tech">SceneView</span><span class="proj-tech">3D Rendering</span></div>
+          <a href="#" class="proj-link" data-i18n="github_link"></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="contact-wrap" id="kontakt">
+  <div class="contact-inner">
+    <div class="sec-label" style="justify-content:center">
+      <span class="sec-num" data-i18n="sec_kontakt_num"></span>
+      <div class="sec-line"></div>
+    </div>
+    <h2 class="contact-title" data-i18n="contact_title"></h2>
+    <p class="contact-sub" data-i18n="contact_sub"></p>
+    <div class="contact-btns">
+      <a href="mailto:zaid@example.com" class="cbtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        Email
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="cbtn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://github.com" target="_blank" class="cbtn">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="flogo">Zaid Omar<span>.</span></div>
+  <span data-i18n="footer_copy"></span>
+  <div class="flinks">
+    <a href="#" data-i18n="footer_datenschutz"></a>
+    <a href="#" data-i18n="footer_impressum"></a>
+  </div>
+</footer>
+
+<script>
+const T = {
+  de:{
+    nav_profil:"Profil",nav_werdegang:"Werdegang",nav_projekte:"Projekte",nav_kontakt:"Kontakt",
+    badge:"Open to Work",
+    hero_sub:"Junior Software Developer / B.Sc. Angewandte Informatik",
+    hero_desc:"Abgeschlossenes Bachelorstudium der Angewandten Informatik mit Fokus auf Backend-Entwicklung und Transaktionsmanagement. Erfahrung mit Spring Boot, JPA, MongoDB und IoT-Systemen. Aktuell als Software Developer tätig.",
+    sec_werdegang_num:"02 — WERDEGANG",sec_werdegang_title:"Werdegang & Erfahrung.",
+    tl1_title:"Irak",tl1_role:"Schulausbildung & Herkunft",tl1_date:"vor 2019",
+    tl1_desc:"Aufgewachsen und zur Schule gegangen im Irak. Schulische Grundausbildung vor der Einwanderung nach Deutschland.",
+    tl2_title:"Berufskolleg Düsseldorf",tl2_role:"Fachabitur + Informationstechnik",
+    tl2_desc:"Abschluss mit Schwerpunkt Informationstechnik. Erste Kenntnisse in Programmierung und Netzwerktechnik.",
+    tl3_title:"Erste Praxiserfahrungen",tl3_role:"Praktika & Projekte",
+    tl3_desc:"Erste Einblicke in Webentwicklung und Softwareentwicklung. Grundlagen in Java und HTML/CSS erarbeitet.",
+    tl4_title:"FHDW Mettmann & Unternehmen",tl4_role:"Dualer Student (Bachelor) + Junior Developer",
+    tl4_desc:"Angewandte Informatik Software Engineering.\nSpring Boot · JPA · PostgreSQL · MongoDB · Docker\nIoT mit ESP32 · InfluxDB · Grafana\nAngular · WebSockets · PKI in Java",
+    tl5_title:"Bachelorarbeit",tl5_role:"Transaktionsmanagement in Spring Boot",
+    tl5_desc:"Herausforderungen und Optimierungsstrategien mit JPA und MongoDB. Hybride Transaktionen, ReplicaSet mit Docker und Performance-Analyse.",
+    tl6_title:"Software Developer",tl6_role:"Vollzeitstelle",tl6_date:"08.2025 – Heute",
+    tl6_desc:"Vollzeitig als Software Developer tätig nach erfolgreichem Bachelorabschluss in Angewandter Informatik.",
+    sec_proj_num:"03 — PROJEKTE",sec_proj_title:"Was ich entwickelt habe.",
+    badge_thesis:"Bachelorarbeit",badge_uni:"Hochschulprojekt",
+    p1_cat:"Transaktionsmanagement & Backend",
+    p1_desc:"Spring Boot Anwendung mit hybriden Transaktionen über JPA/PostgreSQL und MongoDB gleichzeitig. ReplicaSet-Setup mit Docker, Deadlock-Handling und Performance-Messungen.",
+    p2_cat:"IoT & Monitoring",
+    p2_desc:"Echtzeit-Sensorüberwachung mit ESP32, Datenspeicherung in InfluxDB und Live-Visualisierung via Grafana. Fokus auf Energy Harvesting und batterielose Systeme.",
+    p3_cat:"Computer Vision & Python",
+    p3_desc:"Echtzeit-Objekterkennung mit OpenCV. Erkennung von 3D-Formen (Kugel, Würfel, Pyramide, Hexagon) per Webcam via HSV-Farbmasken und Canny Edge Detection.",
+    p4_cat:"Full-Stack & Angular",
+    p4_desc:"Echtzeit-Webanwendung mit Angular Frontend und Spring Boot Backend über WebSockets. Komponenten-Architektur mit BranchCard-Komponenten und Context-Struktur.",
+    p5_cat:"Kotlin & Mobile / VR",
+    p5_desc:"Android-App zur interaktiven Darstellung von Nike-Schuhen in 3D und VR. Nutzer können Schuhe aus allen Winkeln betrachten, in der realen Umgebung via AR platzieren und in VR erleben.",
+    github_link:"Auf GitHub verfügbar →",
+    sec_kontakt_num:"04 — KONTAKT",
+    contact_title:"Bereit für\n<span class='accent'>neue</span>\nChallenges.",
+    contact_sub:"Offen für spannende Projekte und neue berufliche Möglichkeiten. Ich freue mich über den Austausch.",
+    footer_copy:"© 2025 – Alle Rechte vorbehalten",footer_datenschutz:"Datenschutz",footer_impressum:"Impressum"
+  },
+  en:{
+    nav_profil:"Profile",nav_werdegang:"Experience",nav_projekte:"Projects",nav_kontakt:"Contact",
+    badge:"Open to Work",
+    hero_sub:"Junior Software Developer / B.Sc. Applied Computer Science",
+    hero_desc:"Bachelor's degree in Applied Computer Science with a focus on backend development and transaction management. Experienced in Spring Boot, JPA, MongoDB and IoT systems. Currently working as a Software Developer.",
+    sec_werdegang_num:"02 — EXPERIENCE",sec_werdegang_title:"Career & Experience.",
+    tl1_title:"Iraq",tl1_role:"Education & Origin",tl1_date:"before 2019",
+    tl1_desc:"Grew up and attended school in Iraq. Completed foundational education before immigrating to Germany.",
+    tl2_title:"Vocational College Düsseldorf",tl2_role:"A-levels + Information Technology",
+    tl2_desc:"Graduated with a focus on information technology. First experience in programming and networking.",
+    tl3_title:"First Practical Experience",tl3_role:"Internships & Projects",
+    tl3_desc:"First insights into web and software development. Built foundations in Java and HTML/CSS.",
+    tl4_title:"FHDW Mettmann & Company",tl4_role:"Dual Student (Bachelor) + Junior Developer",
+    tl4_desc:"Applied Computer Science Software Engineering.\nSpring Boot · JPA · PostgreSQL · MongoDB · Docker\nIoT with ESP32 · InfluxDB · Grafana\nAngular · WebSockets · PKI in Java",
+    tl5_title:"Bachelor Thesis",tl5_role:"Transaction Management in Spring Boot",
+    tl5_desc:"Challenges and optimization strategies with JPA and MongoDB. Hybrid transactions, ReplicaSet with Docker and performance analysis.",
+    tl6_title:"Software Developer",tl6_role:"Full-time Position",tl6_date:"08.2025 – Present",
+    tl6_desc:"Working full-time as a Software Developer after successfully completing the Bachelor's degree in Applied Computer Science.",
+    sec_proj_num:"03 — PROJECTS",sec_proj_title:"What I've built.",
+    badge_thesis:"Bachelor Thesis",badge_uni:"University Project",
+    p1_cat:"Transaction Management & Backend",
+    p1_desc:"Spring Boot application with hybrid transactions across JPA/PostgreSQL and MongoDB simultaneously. ReplicaSet setup with Docker, deadlock handling and performance measurements.",
+    p2_cat:"IoT & Monitoring",
+    p2_desc:"Real-time sensor monitoring with ESP32, data storage in InfluxDB and live visualization via Grafana. Focus on energy harvesting and battery-free systems.",
+    p3_cat:"Computer Vision & Python",
+    p3_desc:"Real-time object detection with OpenCV. Recognition of 3D shapes (sphere, cube, pyramid, hexagon) via webcam using HSV color masks and Canny Edge Detection.",
+    p4_cat:"Full-Stack & Angular",
+    p4_desc:"Real-time web application with Angular frontend and Spring Boot backend via WebSockets. Component architecture with BranchCard components and context structure.",
+    p5_cat:"Kotlin & Mobile / VR",
+    p5_desc:"Android app for interactive 3D and VR visualization of Nike shoes. Users can explore shoes from every angle, place them in their real environment via AR, and experience them in VR.",
+    github_link:"Available on GitHub →",
+    sec_kontakt_num:"04 — CONTACT",
+    contact_title:"Ready for\n<span class='accent'>new</span>\nChallenges.",
+    contact_sub:"Open to exciting projects and new professional opportunities. I look forward to connecting.",
+    footer_copy:"© 2025 – All rights reserved",footer_datenschutz:"Privacy",footer_impressum:"Imprint"
+  },
+  ar:{
+    nav_profil:"الملف الشخصي",nav_werdegang:"المسيرة",nav_projekte:"المشاريع",nav_kontakt:"التواصل",
+    badge:"متاح للعمل",
+    hero_sub:"مطور برمجيات مبتدئ / بكالوريوس علوم الحاسوب التطبيقية",
+    hero_desc:"حاصل على بكالوريوس في علوم الحاسوب التطبيقية مع تخصص في تطوير الواجهة الخلفية وإدارة المعاملات. خبرة في Spring Boot وJPA وMongoDB وأنظمة إنترنت الأشياء. يعمل حالياً كمطور برمجيات.",
+    sec_werdegang_num:"02 — المسيرة",sec_werdegang_title:"المسيرة المهنية والخبرة.",
+    tl1_title:"العراق",tl1_role:"التعليم والجذور",tl1_date:"قبل 2019",
+    tl1_desc:"نشأ وتلقى تعليمه في العراق. أتم التعليم الأساسي قبل الهجرة إلى ألمانيا.",
+    tl2_title:"المدرسة المهنية راتينغن",tl2_role:"شهادة الثانوية + تقنية المعلومات",
+    tl2_desc:"التخرج بتخصص تقنية المعلومات. أولى الخطوات في البرمجة وشبكات الحاسوب.",
+    tl3_title:"أولى التجارب العملية",tl3_role:"تدريبات ومشاريع",
+    tl3_desc:"أول تجارب في تطوير الويب والبرمجيات. بناء أسس في Java وHTML/CSS.",
+    tl4_title:"FHDW ومتمان والشركة",tl4_role:"طالب دراسة مزدوجة + مطور مبتدئ",
+    tl4_desc:"هندسة علوم الحاسوب التطبيقية.\nSpring Boot · JPA · PostgreSQL · MongoDB · Docker\nإنترنت الأشياء ESP32 · InfluxDB · Grafana\nAngular · WebSockets · PKI",
+    tl5_title:"أطروحة البكالوريوس",tl5_role:"إدارة المعاملات في Spring Boot",
+    tl5_desc:"التحديات واستراتيجيات التحسين مع JPA وMongoDB. معاملات هجينة وReplicaSet مع Docker وتحليل الأداء.",
+    tl6_title:"مطور برمجيات",tl6_role:"وظيفة بدوام كامل",tl6_date:"08.2025 – الحاضر",
+    tl6_desc:"يعمل بدوام كامل كمطور برمجيات بعد التخرج الناجح في علوم الحاسوب التطبيقية.",
+    sec_proj_num:"03 — المشاريع",sec_proj_title:"ما قمت بتطويره.",
+    badge_thesis:"أطروحة البكالوريوس",badge_uni:"مشروع جامعي",
+    p1_cat:"إدارة المعاملات والواجهة الخلفية",
+    p1_desc:"تطبيق Spring Boot مع معاملات هجينة عبر JPA/PostgreSQL وMongoDB في آنٍ واحد. إعداد ReplicaSet مع Docker ومعالجة الجمود وقياسات الأداء.",
+    p2_cat:"إنترنت الأشياء والمراقبة",
+    p2_desc:"مراقبة أجهزة الاستشعار في الوقت الفعلي مع ESP32، تخزين البيانات في InfluxDB وعرضها مباشرة عبر Grafana. التركيز على حصاد الطاقة والأنظمة عديمة البطاريات.",
+    p3_cat:"رؤية الحاسوب وPython",
+    p3_desc:"التعرف على الأجسام في الوقت الفعلي باستخدام OpenCV. كشف الأشكال ثلاثية الأبعاد (كرة، مكعب، هرم، سداسي) عبر كاميرا الويب باستخدام أقنعة HSV وكشف حواف Canny.",
+    p4_cat:"Full-Stack وAngular",
+    p4_desc:"تطبيق ويب في الوقت الفعلي مع واجهة أمامية Angular وواجهة خلفية Spring Boot عبر WebSockets. هندسة مكونات مع BranchCard والبنية السياقية.",
+    p5_cat:"Kotlin وموبايل / VR",
+    p5_desc:"تطبيق أندرويد لعرض أحذية نايك بشكل تفاعلي ثلاثي الأبعاد وفي الواقع الافتراضي. يمكن للمستخدم رؤية الحذاء من جميع الزوايا ووضعه في بيئته الحقيقية عبر AR وتجربته في VR.",
+    github_link:"متاح على GitHub →",
+    sec_kontakt_num:"04 — التواصل",
+    contact_title:"مستعد لـ\n<span class='accent'>تحديات</span>\nجديدة.",
+    contact_sub:"منفتح على مشاريع مثيرة وفرص مهنية جديدة. يسعدني التواصل.",
+    footer_copy:"© 2025 – جميع الحقوق محفوظة",footer_datenschutz:"الخصوصية",footer_impressum:"بيانات قانونية"
+  }
+};
+
+const htmlEl = document.documentElement;
+const MULTILINE = ['tl4_desc','contact_title'];
+
+function setLang(lang) {
+  const t = T[lang];
+  htmlEl.setAttribute('lang', lang);
+  htmlEl.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.getAttribute('data-i18n');
+    if (t[k] === undefined) return;
+    if (MULTILINE.includes(k)) {
+      el.innerHTML = t[k].replace(/\n/g, '<br>');
+    } else {
+      el.textContent = t[k];
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.textContent === lang.toUpperCase());
+  });
+}
+
+function toggleMenu() {
+  const h = document.getElementById('hamburger');
+  const m = document.getElementById('mobileMenu');
+  h.classList.toggle('open');
+  m.classList.toggle('open');
+}
+
+function closeMenu() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+
+setLang('en');
+</script>
+</body>
+</html>
